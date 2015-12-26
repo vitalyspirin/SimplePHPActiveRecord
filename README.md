@@ -1,6 +1,7 @@
 # SimplePHPActiveRecord
 
-Extension of PHP ActiveRecord with automatically generated validators.
+Extension of PHP ActiveRecord (phpactiverecord.org) with automatically 
+generated validators.
 
 ## Quick Start and Examples
 ```php
