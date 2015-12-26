@@ -10,7 +10,7 @@ class T1 extends SimpleActiveRecord
 }
 ```
 
-There is no need to hardcode validators sinc they will be added automatically by 
+There is no need to hardcode validators since they will be added automatically by 
 class constructor based on table schema. However in current version relations 
 (based on foreign keys) will not be added.
 
