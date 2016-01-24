@@ -29,7 +29,6 @@ class ValidationRulesBuilder extends TableSchema
             $pdo->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
             $pdoStatement = $pdo->query('DESCRIBE ' . $tableName);
             $tableSchemaRowList = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
-//var_dump($tableSchemaRowList);exit;
             MySqlTableSchemaParser::$describeTable[$tableName] = $tableSchemaRowList;
 
             $pdoStatement = $pdo->query('SHOW CREATE TABLE ' . $tableName);
