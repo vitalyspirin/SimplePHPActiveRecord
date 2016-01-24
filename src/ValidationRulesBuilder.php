@@ -25,6 +25,7 @@ class ValidationRulesBuilder extends TableSchema
             $tableSchemaRowList = MySqlTableSchemaParser::$describeTable[$tableName];
         } else
         {
+            $pdoAttributeATTR_CASE = $pdo->getAttribute(PDO::ATTR_CASE);
             $pdo->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
             $pdoStatement = $pdo->query('DESCRIBE ' . $tableName);
             $tableSchemaRowList = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
@@ -35,6 +36,8 @@ class ValidationRulesBuilder extends TableSchema
             $tableSchemaStr = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
             MySqlTableSchemaParser::$showCreateTable[$tableName] = 
                 $tableSchemaStr[0]['Create Table'];
+                
+            $pdo->setAttribute(PDO::ATTR_CASE, $pdoAttributeATTR_CASE);
         }
 
         $tableSchemaParser = new $this->tableSchemaParserClass($this, $tableName, 
@@ -157,11 +160,25 @@ class ValidationRulesBuilder extends TableSchema
             {
                 foreach($valueList[0] as $value)
                 {
-                    $ruleList[] = [$value,
-                        'greater_than_or_equal_to'=>$valueList['min'], 
-                        'less_than_or_equal_to'=>$valueList['max'],
-                        'allow_null' => true
-                    ];
+                    if ( isset($valueList['max']) )
+                    {
+                        $ruleList[] = [$value,
+                            'greater_than_or_equal_to'=>$valueList['min'], 
+                            'less_than_or_equal_to'=>$valueList['max'],
+                            'allow_null' => true
+                        ];
+                    } elseif ( isset($valueList['min']) )
+                    {
+                        $ruleList[] = [$value,
+                            'greater_than_or_equal_to'=>$valueList['min'], 
+                            'allow_null' => true
+                        ];
+                    } else
+                    {
+                        $ruleList[] = [$value,
+                            'allow_null' => true
+                        ];
+                    }
                 }
 
             }

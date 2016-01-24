@@ -7,6 +7,7 @@ require_once __DIR__ . '/../../php-activerecord/ActiveRecord.php';
 
 require_once __DIR__ . '/../../src/SimpleActiveRecord.php';
 require_once __DIR__ . '/../setup/T1.php';
+require_once __DIR__ . '/../setup/T2.php';
 require_once __DIR__ . '/../setup/Data.php';
 
 
@@ -73,6 +74,19 @@ class SimpleActiveRecordTest extends PHPUnit_Framework_TestCase
     }
 
 
+    public function testDecimal()
+    {
+        $t1 = new T1();
+        $t1->set_attributes(Data::$dataForNotNullColumnsArray);
+        $t1->set_attributes(Data::$dataStrictSQLValidForNotNullColumnsArray);
+        $t1->col_decimal3 = -1;
+
+        $result = $t1->save();
+        $this->assertCount(1, $t1->errors->get_raw_errors());
+
+    }
+
+
     public function testSuccessfulSaveInStrictSQLMode()
     {
         $t1 = new T1();
@@ -113,6 +127,14 @@ class SimpleActiveRecordTest extends PHPUnit_Framework_TestCase
             $t1->errors->get_raw_errors());
         $this->assertTrue($result);
 
+    }
+
+
+    public function testForTableWithOneColumn()
+    {
+        $t2 = new T2();
+
+        $this->assertTrue(true);
     }
 
 }

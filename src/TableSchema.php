@@ -31,7 +31,7 @@ class TableSchema
         'date' => ['min'=>'1000-01-01', 'max'=>'9999-12-31', 'format'=>'yyyy-MM-dd']
     ];
 
-    public $timeColumnList;
+    public $timeColumnList = [];
     const TIME_PATTERN = '/(^[0-9]{1,3}:[0-9]{1,2}:[0-9]{1,2}$)|^$/';
     
     public $integerWithRangeColumnList = [
@@ -52,7 +52,9 @@ class TableSchema
         'float unsigned' => ['min'=>0, 'max'=>3.402823466E+38],
         'float' => ['min'=>-3.402823466E+38, 'max'=> 3.402823466E+38],
         'double unsigned' => ['min'=>0, 'max'=>1.7976931348623157E+308],
-        'double' => ['min'=>-1.7976931348623157E+308, 'max'=>1.7976931348623157E+308]
+        'double' => ['min'=>-1.7976931348623157E+308, 'max'=>1.7976931348623157E+308],
+        'decimal unsigned' => ['min'=>0],
+        'decimal' => [],
     ];
     
 
