@@ -20,9 +20,14 @@ class SimpleActiveRecord extends ActiveRecord\Model
     public static $validates_format_of = [];
 
     
-    public function __construct()
+    public function __construct($attributes = array(), 
+        $guard_attributes = true, 
+        $instantiating_via_find = false, 
+        $new_record = true)
     {
-        self::$table_name = strtolower( get_class($this) );
+        
+        $className = (new \ReflectionClass($this))->getShortName();
+        self::$table_name = strtolower($className);
 
         if (self::$connection == null)
         {
@@ -44,7 +49,8 @@ class SimpleActiveRecord extends ActiveRecord\Model
             ; // for code coverage analysis
         }
 
-        parent::__construct();
+
+        parent::__construct($attributes, $guard_attributes, $instantiating_via_find, $new_record);
     }
 
 
