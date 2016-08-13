@@ -3,9 +3,9 @@
 error_reporting(-1);
 ini_set('display_errors', 1);
 
-require_once __DIR__ . '/../../php-activerecord/ActiveRecord.php';
 
-require_once __DIR__ . '/../../src/SimpleActiveRecord.php';
+use vitalyspirin\simplephpactiverecord\SimpleActiveRecord;
+
 require_once __DIR__ . '/../setup/T1.php';
 require_once __DIR__ . '/../setup/T2.php';
 require_once __DIR__ . '/../setup/Data.php';
@@ -20,6 +20,8 @@ require_once __DIR__ . '/../setup/Data.php';
  */
 class SimpleActiveRecordTest extends PHPUnit_Framework_TestCase
 {
+
+    protected static $col_id; // col_id of successfully saved record
     
     public function __construct($name = NULL, array $data = array(), $dataName = '')
     {
@@ -102,6 +104,8 @@ class SimpleActiveRecordTest extends PHPUnit_Framework_TestCase
         $result = $t1->save();
 
         $this->assertNull($t1->errors->get_raw_errors());
+        
+        self::$col_id = $t1->col_id;
     }
 
 
@@ -132,9 +136,24 @@ class SimpleActiveRecordTest extends PHPUnit_Framework_TestCase
 
     public function testForTableWithOneColumn()
     {
-        $t2 = new T2();
+        $t2 = new t2\T2();
 
         $this->assertTrue(true);
     }
 
+
+    public function testPassingAttributesToConstructor()
+    {
+        $t1 = new T1(['col_int1'=>456]);
+        $this->assertEquals($t1->col_int1, 456);
+    }
+    
+    
+    public function testTableNameWithNamespace()
+    {
+        $t2 = new t2\T2();
+        $this->assertEquals(t2\T2::$table_name, 't2');
+    }
+    
+    
 }

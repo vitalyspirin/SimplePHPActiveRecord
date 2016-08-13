@@ -12,7 +12,26 @@
             "role": "Developer"
         }
     ],
+    
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=5.4.0",
+        "php-activerecord/php-activerecord": "^1.1"
+    },
+    
+    "require-dev": {
+        "phpunit/phpunit": "4.8.*",
+        "friendsofphp/php-cs-fixer": "^1.11"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "vitalyspirin\\simplephpactiverecord\\": "src/"
+        }
+    },
+    
+    "scripts": {
+        "fix": "vendor/bin/php-cs-fixer fix -v --level=psr2 --fixers=single_quote,new_with_braces,operators_spaces,phpdoc_short_description,phpdoc_separation,return,concat_with_spaces,spaces_before_semicolon,multiline_spaces_before_semicolon,unused_use,ordered_use,whitespacy_lines .",
+        "test": "vendor/bin/phpunit tests/unit/"
     }
+
 }

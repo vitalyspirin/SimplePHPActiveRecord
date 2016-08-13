@@ -1,5 +1,8 @@
 <?php
 
+namespace vitalyspirin\simplephpactiverecord;
+
+
 class TableSchema
 {
 

@@ -1,9 +1,9 @@
 <?php
 
-require_once 'ValidationRulesBuilder.php';
+namespace vitalyspirin\simplephpactiverecord;
 
 
-class SimpleActiveRecord extends ActiveRecord\Model
+class SimpleActiveRecord extends \ActiveRecord\Model
 {
     protected static $ruleList = [];
     
@@ -31,7 +31,7 @@ class SimpleActiveRecord extends ActiveRecord\Model
 
         if (self::$connection == null)
         {
-            $cfg = ActiveRecord\Config::instance();
+            $cfg = \ActiveRecord\Config::instance();
             self::$dsn = $cfg->get_default_connection_string();
         }
         $pdo = $this->connection()->connection;

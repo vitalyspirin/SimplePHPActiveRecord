@@ -1,13 +1,14 @@
 <?php
 
-require_once 'TableSchema.php';
-require_once 'MySqlTableSchemaParser.php';
+namespace vitalyspirin\simplephpactiverecord;
 
 
 class ValidationRulesBuilder extends TableSchema
 {
     const DATABASE_IS_NOT_SUPPORTED = 'Database is not supported';
-    public static  $supportedDatabaseList = ['mysql' => 'MySqlTableSchemaParser'];
+    public static  $supportedDatabaseList = [
+        'mysql' => 'vitalyspirin\simplephpactiverecord\MySqlTableSchemaParser'
+    ];
     protected $tableSchemaParserClass;
     
     
@@ -25,18 +26,18 @@ class ValidationRulesBuilder extends TableSchema
             $tableSchemaRowList = MySqlTableSchemaParser::$describeTable[$tableName];
         } else
         {
-            $pdoAttributeATTR_CASE = $pdo->getAttribute(PDO::ATTR_CASE);
-            $pdo->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
+            $pdoAttributeATTR_CASE = $pdo->getAttribute(\PDO::ATTR_CASE);
+            $pdo->setAttribute(\PDO::ATTR_CASE, \PDO::CASE_NATURAL);
             $pdoStatement = $pdo->query('DESCRIBE ' . $tableName);
-            $tableSchemaRowList = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+            $tableSchemaRowList = $pdoStatement->fetchAll(\PDO::FETCH_ASSOC);
             MySqlTableSchemaParser::$describeTable[$tableName] = $tableSchemaRowList;
 
             $pdoStatement = $pdo->query('SHOW CREATE TABLE ' . $tableName);
-            $tableSchemaStr = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+            $tableSchemaStr = $pdoStatement->fetchAll(\PDO::FETCH_ASSOC);
             MySqlTableSchemaParser::$showCreateTable[$tableName] = 
                 $tableSchemaStr[0]['Create Table'];
                 
-            $pdo->setAttribute(PDO::ATTR_CASE, $pdoAttributeATTR_CASE);
+            $pdo->setAttribute(\PDO::ATTR_CASE, $pdoAttributeATTR_CASE);
         }
 
         $tableSchemaParser = new $this->tableSchemaParserClass($this, $tableName, 

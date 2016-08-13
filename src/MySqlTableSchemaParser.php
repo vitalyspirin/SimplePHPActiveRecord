@@ -1,6 +1,6 @@
 <?php
 
-require_once 'TableSchema.php';
+namespace vitalyspirin\simplephpactiverecord;
 
 
 class MySqlTableSchemaParser
