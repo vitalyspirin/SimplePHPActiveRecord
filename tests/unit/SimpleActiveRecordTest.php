@@ -13,10 +13,10 @@ require_once __DIR__ . '/../setup/Data.php';
 
 
 /**
- * @covers SimpleActiveRecord
- * @covers ValidationRulesBuilder
- * @covers TableSchema
- * @covers MySQLTableSchemaParser
+ * @covers vitalyspirin\simplephpactiverecord\SimpleActiveRecord
+ * @covers vitalyspirin\simplephpactiverecord\ValidationRulesBuilder
+ * @covers vitalyspirin\simplephpactiverecord\TableSchema
+ * @covers vitalyspirin\simplephpactiverecord\MySQLTableSchemaParser
  */
 class SimpleActiveRecordTest extends PHPUnit_Framework_TestCase
 {

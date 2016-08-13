@@ -31,7 +31,7 @@
     
     "scripts": {
         "fix": "vendor/bin/php-cs-fixer fix -v --level=psr2 --fixers=single_quote,new_with_braces,operators_spaces,phpdoc_short_description,phpdoc_separation,return,concat_with_spaces,spaces_before_semicolon,multiline_spaces_before_semicolon,unused_use,ordered_use,whitespacy_lines .",
-        "test": "vendor/bin/phpunit tests/unit/"
+        "test": "vendor/bin/phpunit --configuration tests --coverage-html tests/codecoverage tests/unit/"
     }
 
 }
