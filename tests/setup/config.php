@@ -1,9 +1,8 @@
 <?php
 
 $db = [
-    'host'=>'localhost', 
-    'user'=>'root', 
-    'password'=>'', 
-    'database'=>'simpleactiverecord'
+    'host' => 'localhost',
+    'user' => 'root',
+    'password' => '',
+    'database' => 'simpleactiverecord'
 ];
-

@@ -31,7 +31,7 @@ class Data
         'col_double4' => 1.7976931348623157E+309, // valid max is only 1.7976931348623157E+308
         'col_doubleprecision2' => 1.7976931348623157E+309,
         'col_doubleprecision4' => 1.7976931348623157E+309,
-        
+
         'col_char2' => '123',
         'col_char4' => '123',
         'col_varchar2' => '1234',
@@ -46,15 +46,15 @@ class Data
         'col_mediumtext2' => 106,
         'col_longblob2' => 107,
         'col_longtext2' => 108,
-        
+
         'col_enum2' => 'val1',
         'col_set2' => 'val2',
         'col_date2' => '999-01-01',
         'col_datetime2' => '999-01-01 00:00:00.000000',
         'col_time2' => '839:59:59.000000' // valid max is only '838:59:59.000000'
-    ]; 
+    ];
 
-        
+
     public static $dataStrictSQLValidForNotNullColumnsArray = [
 /*        'col_bit2' => true,
         'col_bit4' => false,
@@ -71,25 +71,24 @@ class Data
         'col_integer4' => 4294967295, // valid max is only 4294967295
     //    'col_bigint2' => 9223372036854775807, // valid max is only 9223372036854775807
     //    'col_bigint4' => 9223372036854775807, // valid max is only 9223372036854775807
-        
+
         'col_float2' => 3.402823466E+38, // valid max is only 3.402823466E+38
         'col_float4' => 3.402823466E+38,// valid max is only 3.402823466E+38
         'col_double2' => 1.7976931348623157E+308, // valid max is only 1.7976931348623157E+308
         'col_double4' => 1.7976931348623157E+308, // valid max is only 1.7976931348623157E+308
         'col_doubleprecision2' => 1.7976931348623157E+308,
         'col_doubleprecision4' => 1.7976931348623157E+308,
-        
-        'col_char2' => '1',    
+
+        'col_char2' => '1',
         'col_char4' => '12',
         'col_varchar2' => '123',
         'col_binary2' => '1',
         'col_binary4' => '12',
         'col_varbinary2' => '123',
-        
+
         'col_enum2' => 'value1',
         'col_set2' => 'value2',
 
         'col_time2' => '838:59:59' // valid max is only '838:59:59.000000'
     ];
-
 }

@@ -22,15 +22,15 @@ class SimpleActiveRecordTest extends PHPUnit_Framework_TestCase
 {
 
     protected static $col_id; // col_id of successfully saved record
-    
-    public function __construct($name = NULL, array $data = array(), $dataName = '')
+
+    public function __construct($name = null, array $data = array(), $dataName = '')
     {
         include __DIR__ . '/../setup/config.php';
-        
+
         $pdo = new PDO("mysql:host={$db['host']};", $db['user'], $db['password']);
         $result = $pdo->exec("SET @@sql_mode = 'TRADITIONAL'");
 
-        $sqlStr = file_get_contents(__DIR__ . "/../setup/mysql.sql");
+        $sqlStr = file_get_contents(__DIR__ . '/../setup/mysql.sql');
         $result = $pdo->exec($sqlStr);
 
         $cfg = ActiveRecord\Config::instance();
@@ -43,7 +43,7 @@ class SimpleActiveRecordTest extends PHPUnit_Framework_TestCase
 
         parent::__construct($name, $data, $dataName);
     }
-    
+
 
     public function testSaveEmptyRecord()
     {
@@ -54,11 +54,11 @@ class SimpleActiveRecordTest extends PHPUnit_Framework_TestCase
         $columnList = array_keys(Data::$dataForNotNullColumnsArray);
         $extraErrorColumn = array_diff($errorColumnList, $columnList);
         $this->assertCount(0, $extraErrorColumn);
-        
+
         $missingErrorColumn = array_diff($columnList, $errorColumnList);
         $this->assertCount(0, $missingErrorColumn);
     }
-    
+
 
     public function testSaveLongStrings()
     {
@@ -70,7 +70,7 @@ class SimpleActiveRecordTest extends PHPUnit_Framework_TestCase
         $columnList = array_keys(Data::$dataStrictSQLValidForNotNullColumnsArray);
         $extraErrorColumn = array_diff($errorColumnList, $columnList);
         $this->assertCount(0, $extraErrorColumn);
-        
+
         $missingErrorColumn = array_diff($columnList, $errorColumnList);
         $this->assertCount(0, $missingErrorColumn);
     }
@@ -85,7 +85,6 @@ class SimpleActiveRecordTest extends PHPUnit_Framework_TestCase
 
         $result = $t1->save();
         $this->assertCount(1, $t1->errors->get_raw_errors());
-
     }
 
 
@@ -94,7 +93,7 @@ class SimpleActiveRecordTest extends PHPUnit_Framework_TestCase
         $t1 = new T1();
         $t1->set_attributes(Data::$dataForNotNullColumnsArray);
         $t1->set_attributes(Data::$dataStrictSQLValidForNotNullColumnsArray);
-        
+
         // for further test of unique validator
         $t1->col_int1 = 1;
         $t1->col_integer1 = 2;
@@ -104,13 +103,14 @@ class SimpleActiveRecordTest extends PHPUnit_Framework_TestCase
         $result = $t1->save();
 
         $this->assertNull($t1->errors->get_raw_errors());
-        
+
         self::$col_id = $t1->col_id;
     }
 
 
     /**
-     * need prior saving of row to test unique values
+     * need prior saving of row to test unique values.
+     *
      * @depends testSuccessfulSaveInStrictSQLMode
      */
     public function testForUnique()
@@ -121,16 +121,15 @@ class SimpleActiveRecordTest extends PHPUnit_Framework_TestCase
         $t1->col_int1 = 1;
         $result = $t1->save();
 
-        $this->assertTrue( array_key_exists('col_int1', $t1->errors->get_raw_errors()) );
+        $this->assertTrue(array_key_exists('col_int1', $t1->errors->get_raw_errors()));
 
         $t1->col_integer1 = 2;
         $t1->col_integer3 = 3;
         $result = $t1->save();
 
-        $result = array_key_exists('col_integer1_and_col_integer3', 
+        $result = array_key_exists('col_integer1_and_col_integer3',
             $t1->errors->get_raw_errors());
         $this->assertTrue($result);
-
     }
 
 
@@ -144,16 +143,14 @@ class SimpleActiveRecordTest extends PHPUnit_Framework_TestCase
 
     public function testPassingAttributesToConstructor()
     {
-        $t1 = new T1(['col_int1'=>456]);
+        $t1 = new T1(['col_int1' => 456]);
         $this->assertEquals($t1->col_int1, 456);
     }
-    
-    
+
+
     public function testTableNameWithNamespace()
     {
         $t2 = new t2\T2();
         $this->assertEquals(t2\T2::$table_name, 't2');
     }
-    
-    
 }
