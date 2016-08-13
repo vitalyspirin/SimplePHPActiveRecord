@@ -1,28 +1,24 @@
 ## Launching tests
 
-To launch tests you need to add library from phpactiverecord.org into 
-/php-activerecord directory. So the directory structure has to look like this:
-
-![folderStructure.png](/tests/docs/folderStructure.png "folder structure")
-
-Then you need to specify database parameters in /tests/setup/config.php. 
+To launch tests you need to specify database parameters in /tests/setup/config.php. 
 Test database that will be automatically created is 'simpleactiverecord'. 
 
-After that you can change working directory to /tests (where file phpunit.xml 
-with white list code coverage configuration is located) and launch tests using 
-terminal command:
+After that you can launch tests using terminal command:
 ```
-$ phpunit  unit/SimpleActiveRecordTest.php
+$ composer test
 ```
 The output should be like this:
 ```
-PHPUnit 4.8.21 by Sebastian Bergmann and contributors.
+> vendor/bin/phpunit --configuration tests --coverage-html tests/codecoverage tests/unit/
+PHPUnit 4.8.27 by Sebastian Bergmann and contributors.
 
-......
+........
 
-Time: 518 ms, Memory: 7.25Mb
+Time: 6.07 seconds, Memory: 11.25MB
 
-OK (6 tests, 9 assertions)
+OK (8 tests, 11 assertions)
+
+Generating code coverage report in HTML format ... done
 ```
 
 ## Code Coverage
