@@ -3,9 +3,14 @@
 Extension of PHP ActiveRecord (phpactiverecord.org) with automatically 
 generated validators.
 
+## Installation
+```
+composer require vitalyspirin/simplephpactiverecord
+```
+
 ## Quick Start
 ```php
-class T1 extends SimpleActiveRecord
+class T1 extends \vitalyspirin\simplephpactiverecord\SimpleActiveRecord
 {
     
 }
@@ -41,7 +46,7 @@ CREATE TABLE person
 
 then if we run the following code:
 ```php
-class Person extends SimpleActiveRecord
+class Person extends \vitalyspirin\simplephpactiverecord\SimpleActiveRecord
 {
     static $table_name = 'person';
 }
