@@ -4,6 +4,7 @@
     "description": "Extension of PHP ActiveRecord with added automatically generated validators",
     "keywords": ["phpactiverecord","php-activerecord", "activerecord","active record", "simpleactiverecord", "simple active record"],
     "homepage": "https://github.com/vitalyspirin/SimplePHPActiveRecord",
+    "license": "MIT",
     "authors": [
         {
             "name": "Vitaly Spirin",
