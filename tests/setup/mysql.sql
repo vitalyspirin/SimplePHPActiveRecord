@@ -124,3 +124,10 @@ CREATE TABLE t2
     FOREIGN KEY (col_id) REFERENCES t1(col_id)
 );
 
+
+CREATE TABLE t3
+(
+    t3_col1  INTEGER NOT NULL,
+    t3_col2  INTEGER NOT NULL
+);
+

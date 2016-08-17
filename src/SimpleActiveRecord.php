@@ -9,8 +9,10 @@ class SimpleActiveRecord extends \ActiveRecord\Model
     protected $validationRulesBuilder;
     protected static $dsn;
 
-
     public static $table_name;
+    
+    // insert the following block with validators into every your model that 
+    // extends this class
     public static $validates_presence_of = [];
     public static $validates_size_of = [];
     public static $validates_numericality_of = [];
@@ -79,22 +81,22 @@ class SimpleActiveRecord extends \ActiveRecord\Model
 
     protected function populateRules()
     {
-        self::$validates_presence_of = self::$ruleList[self::$table_name]
+        static::$validates_presence_of = self::$ruleList[self::$table_name]
             ['validates_presence_of'];
 
-        self::$validates_size_of = self::$ruleList[self::$table_name]
+        static::$validates_size_of = self::$ruleList[self::$table_name]
             ['validates_size_of'];
 
-        self::$validates_numericality_of = self::$ruleList[self::$table_name]
+        static::$validates_numericality_of = self::$ruleList[self::$table_name]
             ['validates_numericality_of'];
 
-        self::$validates_uniqueness_of = self::$ruleList[self::$table_name]
+        static::$validates_uniqueness_of = self::$ruleList[self::$table_name]
             ['validates_uniqueness_of'];
 
-        self::$validates_inclusion_of = self::$ruleList[self::$table_name]
+        static::$validates_inclusion_of = self::$ruleList[self::$table_name]
             ['validates_inclusion_of'];
 
-        self::$validates_format_of = self::$ruleList[self::$table_name]
+        static::$validates_format_of = self::$ruleList[self::$table_name]
             ['validates_format_of'];
     }
 }

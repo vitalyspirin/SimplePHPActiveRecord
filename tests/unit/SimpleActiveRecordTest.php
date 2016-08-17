@@ -153,4 +153,16 @@ class SimpleActiveRecordTest extends PHPUnit_Framework_TestCase
         $t2 = new t2\T2();
         $this->assertEquals(t2\T2::$table_name, 't2');
     }
+
+
+    public function testValidatorDoesnotHaveExtraProperty()
+    {
+        $t1 = new T1();
+        $t2 = new t2\T2();
+        $t3 = new T3();
+
+        $this->assertTrue( count(T1::$validates_presence_of) > 1 );
+        $this->assertCount(1, t2\T2::$validates_presence_of);
+        $this->assertCount(2, T3::$validates_presence_of);
+    }
 }
