@@ -12,13 +12,21 @@ composer require vitalyspirin/simplephpactiverecord
 ```php
 class T1 extends \vitalyspirin\simplephpactiverecord\SimpleActiveRecord
 {
-    
+    public static $validates_presence_of = [];
+    public static $validates_size_of = [];
+    public static $validates_numericality_of = [];
+    public static $validates_uniqueness_of = [];
+    public static $validates_inclusion_of = [];
+    public static $validates_format_of = [];
 }
 ```
 
 There is no need to hardcode validators since they will be added automatically by 
 class constructor based on table schema. However in current version relations 
-(based on foreign keys) will not be added.
+(based on foreign keys) will not be added. 
+
+Static properties (validators) have to be added to every child model extending SimpleActiveRecord
+class because in PHP it's impossible to create static properties dynamically.
 
 Instance of such class is created in a usual way:
 
@@ -49,6 +57,13 @@ then if we run the following code:
 class Person extends \vitalyspirin\simplephpactiverecord\SimpleActiveRecord
 {
     static $table_name = 'person';
+    
+    public static $validates_presence_of = [];
+    public static $validates_size_of = [];
+    public static $validates_numericality_of = [];
+    public static $validates_uniqueness_of = [];
+    public static $validates_inclusion_of = [];
+    public static $validates_format_of = [];
 }
 
 $person = new Person();
